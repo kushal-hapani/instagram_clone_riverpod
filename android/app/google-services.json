@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "496354053265",
+    "project_id": "instagram-clone-riverpod-9fd74",
+    "storage_bucket": "instagram-clone-riverpod-9fd74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:496354053265:android:e036ceea1f84fa8e628330",
+        "android_client_info": {
+          "package_name": "com.instsgram.riverpod.instagram_clone_riverpod"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIJSGkv2q0dIdBv81dicj3EUfwM-iLmbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
