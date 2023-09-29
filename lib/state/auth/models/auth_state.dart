@@ -14,7 +14,7 @@ class AuthState {
     required this.userId,
   });
 
-  ///When state is not known for [AuthState]
+  ///When state is not known for [AuthState] we created a named constructor
   const AuthState.unKnown()
       : result = null,
         isLoading = false,
