@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_riverpod/state/auth/providers/auth_state_provider.dart';
 import 'package:instagram_clone_riverpod/state/auth/providers/is_logged_in_provier.dart';
 import 'package:instagram_clone_riverpod/state/providers/is_loading_provider.dart';
+import 'package:instagram_clone_riverpod/views/components/animations/data_not_found_animations_view.dart';
 import 'package:instagram_clone_riverpod/views/components/loading/loading_screen.dart';
 import 'package:instagram_clone_riverpod/views/login/login_view.dart';
 
@@ -108,6 +109,7 @@ class _MainViewState extends State<MainView> {
           ),
         ],
       ),
+      body: const DataNotFoundAnimationView(),
     );
   }
 }
