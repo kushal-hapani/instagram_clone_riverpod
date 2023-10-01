@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone_riverpod/state/auth/providers/auth_state_provider.dart';
 import 'package:instagram_clone_riverpod/state/auth/providers/is_logged_in_provier.dart';
+import 'package:instagram_clone_riverpod/state/providers/is_loading_provider.dart';
+import 'package:instagram_clone_riverpod/views/components/loading/loading_screen.dart';
+import 'package:instagram_clone_riverpod/views/login/login_view.dart';
 
 import 'firebase_options.dart';
 
@@ -35,17 +38,32 @@ class MyApp extends StatelessWidget {
       title: 'Instagram Riverpod',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.light,
         primaryColor: Colors.blue,
       ),
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.dark,
         primarySwatch: Colors.blueGrey,
         indicatorColor: Colors.blueGrey,
       ),
       home: Consumer(
         builder: (context, ref, child) {
+          ref.listen<bool>(
+            isLoadingProvider,
+            (_, isLoading) {
+              if (isLoading) {
+                LoadingScreen.instance().show(
+                  context: context,
+                );
+              } else {
+                LoadingScreen.instance().hide();
+              }
+            },
+          );
+
           final isLoggedIn = ref.watch(isLoggedInProvider);
 
           if (isLoggedIn) {
@@ -85,62 +103,6 @@ class _MainViewState extends State<MainView> {
                 onPressed: () async {
                   ref.read(authStateProvider.notifier).logOut();
                 },
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class LoginView extends StatelessWidget {
-  const LoginView({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Login View",
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Consumer(
-            builder: (context, ref, child) {
-              return TextButton(
-                onPressed: () async {
-                  await ref.read(authStateProvider.notifier).logInWithGoogle();
-                  // final result = await const Authenticator().loginWithGoogle();
-                  // result.log();
-                },
-                child: const Text(
-                  "Sign in with Google",
-                ),
-              );
-            },
-          ),
-          //
-
-          //
-          Consumer(
-            builder: (context, ref, child) {
-              return TextButton(
-                onPressed: () async {
-                  await ref
-                      .read(authStateProvider.notifier)
-                      .logInWithFacebook();
-                  // final result = await const Authenticator().loginWithGoogle();
-                  // result.log();
-                },
-                child: const Text(
-                  "Sign in with Facebook",
-                ),
               );
             },
           ),
