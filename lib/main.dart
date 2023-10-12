@@ -3,12 +3,11 @@ import 'dart:developer' as devtools show log;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:instagram_clone_riverpod/state/auth/providers/auth_state_provider.dart';
 import 'package:instagram_clone_riverpod/state/auth/providers/is_logged_in_provier.dart';
 import 'package:instagram_clone_riverpod/state/providers/is_loading_provider.dart';
-import 'package:instagram_clone_riverpod/views/components/animations/data_not_found_animations_view.dart';
 import 'package:instagram_clone_riverpod/views/components/loading/loading_screen.dart';
 import 'package:instagram_clone_riverpod/views/login/login_view.dart';
+import 'package:instagram_clone_riverpod/views/main/main_view.dart';
 
 import 'firebase_options.dart';
 
@@ -74,42 +73,6 @@ class MyApp extends StatelessWidget {
           }
         },
       ),
-    );
-  }
-}
-
-class MainView extends StatefulWidget {
-  const MainView({super.key});
-
-  @override
-  State<MainView> createState() => _MainViewState();
-}
-
-class _MainViewState extends State<MainView> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Home view",
-        ),
-        actions: [
-          //
-          Consumer(
-            builder: (context, ref, child) {
-              return IconButton(
-                icon: const Icon(
-                  Icons.logout_rounded,
-                ),
-                onPressed: () async {
-                  ref.read(authStateProvider.notifier).logOut();
-                },
-              );
-            },
-          ),
-        ],
-      ),
-      body: const DataNotFoundAnimationView(),
     );
   }
 }
