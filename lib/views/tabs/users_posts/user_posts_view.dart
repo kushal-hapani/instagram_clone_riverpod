@@ -21,8 +21,11 @@ class UserPostView extends ConsumerWidget {
       child: post.when(
         data: (post) {
           if (post.isEmpty) {
-            return const EmptyContentWithTextAnimationViewWithText(
-              text: Strings.youHaveNoPosts,
+            return InkWell(
+              onTap: () => ref.refresh(userPostProvider),
+              child: const EmptyContentWithTextAnimationViewWithText(
+                text: Strings.youHaveNoPosts,
+              ),
             );
           } else {
             return PostGridView(

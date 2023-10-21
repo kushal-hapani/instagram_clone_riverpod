@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_riverpod/state/posts/models/post.dart';
 
@@ -14,9 +15,13 @@ class PostThumbnailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Image.network(
-        post.thumbnailUrl,
-        fit: BoxFit.cover,
+      child: CachedNetworkImage(
+        imageUrl: post.thumbnailUrl,
+        placeholder: (context, url) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
