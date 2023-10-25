@@ -26,7 +26,14 @@ class PostGridView extends StatelessWidget {
         return PostThumbnailView(
           post: post,
           onTap: () {
-            //TODO Navigate to post details view
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => PostCommentView(
+            //       postId: post.postId,
+            //     ),
+            //   ),
+            // );
           },
         );
       },

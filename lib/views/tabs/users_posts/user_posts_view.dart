@@ -14,18 +14,12 @@ class UserPostView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final post = ref.watch(userPostProvider);
     return RefreshIndicator(
-      onRefresh: () {
-        ref.refresh(userPostProvider);
-        return Future.delayed(const Duration(seconds: 1));
-      },
+      onRefresh: () => ref.refresh(userPostProvider.future),
       child: post.when(
         data: (post) {
           if (post.isEmpty) {
-            return InkWell(
-              onTap: () => ref.refresh(userPostProvider),
-              child: const EmptyContentWithTextAnimationViewWithText(
-                text: Strings.youHaveNoPosts,
-              ),
+            return const EmptyContentWithTextAnimationViewWithText(
+              text: Strings.youHaveNoPosts,
             );
           } else {
             return PostGridView(
