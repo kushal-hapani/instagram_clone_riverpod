@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_riverpod/views/components/post/post_thumbnail_view.dart';
+import 'package:instagram_clone_riverpod/views/post_details/post_details_view.dart';
 
 import '../../../state/posts/models/post.dart';
 
@@ -26,14 +27,14 @@ class PostGridView extends StatelessWidget {
         return PostThumbnailView(
           post: post,
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => PostCommentView(
-            //       postId: post.postId,
-            //     ),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PostDetailView(
+                  post: post,
+                ),
+              ),
+            );
           },
         );
       },

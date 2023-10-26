@@ -9,6 +9,7 @@ import 'package:instagram_clone_riverpod/main.dart';
 import 'package:instagram_clone_riverpod/state/constants/firebase_collection_name.dart';
 import 'package:instagram_clone_riverpod/state/image_upload/constants/constants.dart';
 import 'package:instagram_clone_riverpod/state/image_upload/exceptions/could_not_build_thumbnail_exception.dart';
+import 'package:instagram_clone_riverpod/state/image_upload/extension/get_collection_name_from_file_type.dart';
 import 'package:instagram_clone_riverpod/state/image_upload/extension/get_image_data_aspect_ratio.dart';
 import 'package:instagram_clone_riverpod/state/image_upload/model/file_type.dart';
 import 'package:instagram_clone_riverpod/state/image_upload/typedefs/is_loading.dart';
@@ -75,13 +76,13 @@ class ImageUploadNotifier extends StateNotifier<IsLoading> {
     final thumbnailRef = FirebaseStorage.instance
         .ref()
         .child(userId)
-        // .child(FirebaseCollectionName.thumbnails)
+        .child(FirebaseCollectionName.thumbnails)
         .child(fileName);
 
     final originalFileRef = FirebaseStorage.instance
         .ref()
         .child(userId)
-        // .child(fileType.collectionName)
+        .child(fileType.collectionName)
         .child(fileName);
 
     try {
@@ -91,8 +92,8 @@ class ImageUploadNotifier extends StateNotifier<IsLoading> {
       final thumbnailStorageId = thumbnailUploadTask.ref.name;
 
       //Upload original file
-      final originalFileUploadTask = originalFileRef.putFile(file);
-      final originalStorageId = originalFileUploadTask.snapshot.ref.name;
+      final originalFileUploadTask = await originalFileRef.putFile(file);
+      final originalStorageId = originalFileUploadTask.ref.name;
 
       //Upload the post
       final postPayload = PostPayload(

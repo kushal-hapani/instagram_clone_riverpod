@@ -13,7 +13,7 @@ class RequestForPostAndComments {
     required this.postId,
     this.sortByCreatedAt = true,
     this.dateSorting = DateSorting.newOnTop,
-    this.limit = null,
+    this.limit,
   });
 
   @override
