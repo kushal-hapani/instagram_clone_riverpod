@@ -9,6 +9,7 @@ import 'package:instagram_clone_riverpod/views/components/dialogs/alert_dialog_m
 import 'package:instagram_clone_riverpod/views/components/dialogs/logout_dialog.dart';
 import 'package:instagram_clone_riverpod/views/constants/strings.dart';
 import 'package:instagram_clone_riverpod/views/create_new_post/create_new_post_view.dart';
+import 'package:instagram_clone_riverpod/views/tabs/home/home_view.dart';
 import 'package:instagram_clone_riverpod/views/tabs/search/search_view.dart';
 import 'package:instagram_clone_riverpod/views/tabs/users_posts/user_posts_view.dart';
 
@@ -127,7 +128,7 @@ class _MainViewState extends ConsumerState<MainView> {
           children: [
             UserPostView(),
             SearchView(),
-            UserPostView(),
+            HomeView(),
           ],
         ),
       ),
