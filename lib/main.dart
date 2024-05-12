@@ -29,8 +29,6 @@ void main() async {
     androidProvider: AndroidProvider.debug,
   );
 
-  // await FirebaseAppCheck.instance.getToken();
-
   runApp(
     const ProviderScope(
       child: MyApp(),
